@@ -24,6 +24,9 @@ jobs:
         
       - name: Build App
         run: ionic build
+      
+      - name: Build App with Obfuscation
+        run: npm run build
 
 
 
