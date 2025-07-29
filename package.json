@@ -7,7 +7,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "watch": "ng build --watch --configuration development",
+    "watch": "ng build --watch --configuration production",
+    "postbuild" : "javascript-obfuscator ./www --output ./www --compact true --self-defending true",
     "test": "ng test",
     "lint": "ng lint"
   },
@@ -55,6 +56,7 @@
     "eslint-plugin-prefer-arrow": "1.2.2",
     "jasmine-core": "~4.6.0",
     "jasmine-spec-reporter": "~5.0.0",
+    "javascript-obfuscator": "^4.1.1",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
