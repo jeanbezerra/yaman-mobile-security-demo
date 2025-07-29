@@ -1,30 +1,68 @@
-# Simple Todo App with Ionic 7
+# Yaman Mobile Security Demo
 
-This is a simple Todo App created with Ionic 7. Users can add, update, and delete todos. Todos are stored in an array of objects, where each object represents a todo item.
+Este projeto é um aplicativo demonstrativo desenvolvido em Ionic com Angular, com foco em segurança de aplicações móveis. Ele simula práticas e técnicas comumente utilizadas na proteção de código-fonte e comunicação de apps híbridos.
 
-## Demo
+---
 
-![Demo](https://ibrahimisa.com/repo-data/ionic-todo.gif)
+## Stack Tecnológica
 
-## Features
+- **Framework**: [Ionic](https://ionicframework.com/) 7
+- **Frontend**: Angular 16
+- **Runtime Nativo**: Capacitor 5 (preparado, ainda não ativado)
+- **Linguagem**: TypeScript
+- **Gerenciador de pacotes**: npm
+- **Build target**: WebView (`www/`) e posteriormente plataformas Android/iOS via Capacitor
 
-- Add new todos by typing in the input field and clicking the "Add" button.
-- Update the completion status of todos swiping on an item by clicking the check button.
-- Delete todos by swiping on an item and clicking the "Delete" button.
+---
 
-## Technologies Used
+## Estrutura do Projeto
 
-- Ionic 7
-- Angular
-- TypeScript
-- HTML
-- CSS
+```
+src/
+├── app/ # Componentes, páginas e módulos principais
+├── assets/ # Imagens, ícones e recursos estáticos
+├── environments/ # Configurações por ambiente
+├── theme/ # Estilização SCSS global
+├── main.ts # Entry point da aplicação
+└── polyfills.ts # Compatibilidade com browsers antigos
 
-## How to Use
+www/ # Output final do build (distribuição web/nativo)
+capacitor.config.ts # Configuração do Capacitor (webDir = www)
+```
 
-1. Clone the repository to your local machine.
-2. Open a terminal and navigate to the project directory.
-3. Run `npm install` to install the project dependencies.
-4. Run `ionic serve` to start the development server.
-5. Open your browser and navigate to `http://localhost:8100/` to view the app.
+---
 
+## Configuração de Ofuscação
+
+Para proteger o código JavaScript/TypeScript do app final, foi configurado o `javascript-obfuscator` como etapa pós-build:
+
+### Dependência instalada
+
+```bash
+npm install --save-dev javascript-obfuscator
+```
+
+### Script configurado no package.json
+
+```json
+"scripts": {
+  "build": "ng build --configuration production",
+  "postbuild": "javascript-obfuscator ./www --output ./www --compact true --self-defending true --control-flow-flattening true --dead-code-injection true --disable-console-output true --string-array true --string-array-encoding base64"
+}
+```
+### Como executar
+```bash
+npm run build
+```
+### Isso irá:
+
+Gerar o build de produção no diretório www/
+
+Aplicar a ofuscação automaticamente nos arquivos gerados (main.js, runtime.js, etc.)
+
+### Como validar
+- Após o build, inspecione os arquivos em www/ e verifique:
+- Nomes de variáveis e funções ofuscados
+- Uso de strings criptografadas
+- Código compactado e ilegível
+- Remoção de console.log e similares
