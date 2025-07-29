@@ -1,0 +1,33 @@
+name: CI Pipeline
+on:
+  push:
+    branches: master
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+            node-version: 22
+
+      - name: Install Ionic CLI
+        run: npm install -g @ionic/cli
+
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Build App
+        run: ionic build
+
+
+
+  
+  
+  
+ 
