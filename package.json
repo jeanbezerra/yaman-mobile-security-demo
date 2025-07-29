@@ -8,7 +8,7 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration production",
-    "postbuild" : "javascript-obfuscator ./www --output ./www --compact true --self-defending true",
+    "postbuild": "javascript-obfuscator ./www --output ./www --compact true --self-defending true --control-flow-flattening true --dead-code-injection true --disable-console-output true --string-array true --string-array-encoding base64",
     "test": "ng test",
     "lint": "ng lint"
   },
