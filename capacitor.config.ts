@@ -1,9 +1,9 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'ionic-todo-list',
-  webDir: 'www',
+  appId: 'com.yaman.securitydemo',
+  appName: 'Yaman Mobile Security',
+  webDir: 'dist',
   server: {
     androidScheme: 'https'
   }
